@@ -1,0 +1,280 @@
+/* -----------------------------------------------------------
+	Project Name:    SoundArt
+    Author:          Paul D'Amora
+    Author URI:      http://pauldamora.com
+	Version:         1.0
+    Created:         March 16, 2018
+	Modified:        March 19, 2018
+    License:         GNU General Public License version 3.0
+	License URI:     http://www.gnu.org/licenses/gpl-3.0.html
+	[Table of contents]
+		1. Typography
+            1.1     Text Elements
+		2. Structure
+            2.1     Body
+            2.2     Loading
+            2.3     Upload
+            2.4     Download
+        3. Animations
+----------------------------------------------------------- */
+
+/* -----------------------------------------------------------
+	1. TYPOGRAPHY
+----------------------------------------------------------- */
+body { color: #646C7F;font-size: 20px;}
+
+.btn-primary {  font-size: 16px;font-weight: bold;}
+
+
+/* -----------------------------------------------------------
+	2. STRUCTURE
+----------------------------------------------------------- */
+/* 2.1 Body
+----------------------------------------------------------- */
+html, body {
+    height: 100%;
+}
+
+body { display: none;}
+.fontawesome-i2svg-active body {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    animation: fade 1s 1;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 15px;
+    width: 100%;
+}
+
+.no-js body { display: auto;}
+
+
+/* 2.2 Loading
+----------------------------------------------------------- */
+#loader-wrapper {
+    background: #f5f5f5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+#loader-wrapper h1 {
+    font-size: 1.5rem;
+    left: 50%;
+    margin-top: 100px;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+}
+
+#loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #3498db;
+    z-index: 1001;
+    -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #e74c3c;
+
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #f9c922;
+    -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+
+/* Loaded */
+#loader, #loader-wrapper, #loader-wrapper h1 {
+    opacity: 1;
+    -webkit-transition: all 0.3s ease-in;
+            transition: all 0.3s ease-in;
+}
+
+.loaded #loader, .loaded #loader-wrapper h1 {
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+}
+
+.loaded #loader-wrapper {
+    opacity: 0;
+    -webkit-transition: all 0.3s 1s ease-out;
+            transition: all 0.3s 1s ease-out;
+    visibility: hidden;
+}
+
+.no-js #loader-wrapper {
+    display: none;
+}
+
+
+/* 2.3 Upload
+----------------------------------------------------------- */
+.dropzone {
+    background: white;
+    border: 2px dashed #0087F7;
+    border-radius: 5px;
+    height: 297px;
+    margin: 0 auto;
+    max-width: 420px;
+}
+
+.dropzone .upload {
+    display: block;
+    font-size: 3em;
+    margin: 0 auto 15px auto;
+}
+
+.dropzone.dz-started .dz-message { position: relative;}
+.dropzone .dz-preview { display: block; height: 100%}
+.dropzone .dz-preview.dz-file-preview { background: none; border-radius: 0;}
+.dropzone .dz-preview .dz-image { border-radius: 0;height: 100%;width: 100%;}
+
+.dropzone .dz-preview .dz-details { color: #646C7F; position: static;}
+.dropzone .dz-preview .dz-progress {
+    background: rgba(100,108,127,0.9);
+    margin: 0 auto;
+    position: static;
+}
+.dropzone .dz-preview .dz-progress .dz-upload { background: #0087F7;}
+
+.dz-error-message {
+    display: block;
+    font-size: 14px;
+}
+
+#btn-upload {
+    bottom: 0;
+    left: 50%;
+    margin: 0 auto;
+    padding: 6px 12px;
+    position: absolute;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+
+/* 2.4 Download
+----------------------------------------------------------- */
+#waveform {
+    background: white;
+    border-radius: 5px;
+    min-height: 150px;
+    padding: 54px 0;
+}
+
+#waveform img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#waveform:hover #btn-download { opacity: 0.8;}
+
+#btn-download {
+    background: #0087F7;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    height: 80px;
+    left: 50%;
+    line-height: 2.5em;
+    opacity: 0;
+    position: absolute;
+    top : 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition: all 400ms cubic-bezier(.2,0,.7,1);
+    width: 80px;
+    z-index: 1000;
+}
+
+#btn-download:hover {
+    box-shadow: 0 0 1px 15px rgba(0, 135, 247, .3),
+    0 0 1px 30px rgba(0, 135, 247, .1),
+    0 0 1px 45px rgba(0, 135, 247, .1);
+}
+
+
+/* -----------------------------------------------------------
+	3. ANIMATIONS
+----------------------------------------------------------- */
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+
+@keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
