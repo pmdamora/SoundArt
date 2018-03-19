@@ -4,6 +4,7 @@
 # Authors: Paul D'Amora
 #
 # Description: Converts an audio file to a png of its waveform.
+
 from app import app
 import matplotlib
 matplotlib.use("Agg")  # hides the stupid rocketship
