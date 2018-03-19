@@ -8,6 +8,7 @@ from app import app
 from flask import request, url_for, render_template, jsonify,\
     send_from_directory
 from app.wave import convert_to_png
+import flask_profiler
 
 
 @app.route('/')
@@ -44,3 +45,6 @@ def upload_file():
 @app.route('/uploads/<filename>')
 def send_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+
+flask_profiler.init_app(app)
