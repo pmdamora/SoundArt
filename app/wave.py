@@ -28,7 +28,9 @@ def convert_to_png(file):
 
     # Read the audio file
     extension = file.filename.split('.')[-1]
-    sound = AudioSegment.from_file(file, format=extension)
+    sound = AudioSegment.from_file(file, format=extension).\
+        set_frame_rate(10000)
+
     data = sound.get_array_of_samples()
 
     # Transform the data so it can be plotted
